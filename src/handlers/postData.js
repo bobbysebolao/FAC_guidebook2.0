@@ -14,10 +14,10 @@ const postDataRest = (name, location, review, img_url, cb) => {
     );
 };
 
-const postDataUser = (name, github_username, cb) => {
+const postDataUser = (name, password, cb) => {
     databaseConnection.query(
-        'INSERT INTO users (name, github_username) VALUES ($1, $2)',
-        [name, github_username],
+        'INSERT INTO users (name, password) VALUES ($1, $2)',
+        [name, password],
         (err, res) => {
             if(err) {
                 return cb(err);
