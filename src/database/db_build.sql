@@ -14,8 +14,8 @@ CREATE TABLE restaurants (
 -- Second table: Users
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  password VARCHAR(100) NOT NULL,
-  name VARCHAR(100) NOT NULL
+  name VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL
 );
 
 -- Third table: Posts // Consider NOT NULL for the user_id
@@ -49,5 +49,17 @@ INSERT INTO restaurants (name, location, review, img_url) VALUES
   'Five star food. Five star service. Impressed by their enthusiasm. Will definitely come back again.',
   'https://www.squaremeal.co.uk/~/media/Images/Restaurants/_DEF/Dotori/Dotori-2017-WEB.jpg'
 );
+
+INSERT INTO users (name, password) VALUES
+(
+  'Whoooolia', 
+  'password'
+),
+(
+  'Zurda', 
+  '1qaz2wsx'
+);
+
+
 
 COMMIT;
