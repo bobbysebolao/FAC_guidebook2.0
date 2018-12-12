@@ -1,13 +1,6 @@
 var recommendations = document.getElementById("recommendations");
 var recsList = document.getElementById("recsList");
 
-// const displayRecommendations = () => {
-//   console.log("hello");
-// fetchData(function() {
-//   console.log("callback in fetchdata");
-// });
-// };
-
 const createTag = (tag, value) => {
   let item = document.createElement(tag);
   if (tag === 'img') {

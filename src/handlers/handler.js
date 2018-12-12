@@ -98,7 +98,7 @@ const handlerSubmit = (req, res) => {
     );
     postData.postDataUser(
       post.userName,
-      post.githubUsername,
+      post.password,
       (err, response) => {
         if (err) {
           return console.log(err, "Error posting user data");
