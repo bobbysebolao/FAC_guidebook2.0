@@ -105,7 +105,7 @@ const handlerLogin = (req, res) => {
             } else {
               const cookie = sign(result[0].id, secret);
               res.writeHead(302, {
-                Location: "http://localhost:5000/public/form.html",
+                Location: "/public/form.html",
                 'Set-Cookie': `jwt=${cookie}; HttpOnly`
               });
               res.end("logged in!!");
@@ -143,7 +143,7 @@ const handlerSubmit = (req, res) => {
               return console.log(err, "Error posting rest data");
             }
             res.writeHead(302, {
-              Location: "http://localhost:5000"
+              Location: "/"
             });
             res.end();
           }
@@ -151,7 +151,7 @@ const handlerSubmit = (req, res) => {
       } else {
         console.log("that restaurant already exists!");
         res.writeHead(302, {
-        Location: "http://localhost:5000/public/form.html"
+        Location: "/public/form.html"
       });
         res.end();
       }
@@ -184,7 +184,7 @@ const handlerSignUp = (req, res) => {
             } else {
               console.log('success', result2);
               res.writeHead(302, {
-              Location: "http://localhost:5000/public/login.html"
+              Location: "/public/login.html"
             });
             res.end();
             }
@@ -192,7 +192,7 @@ const handlerSignUp = (req, res) => {
       } else {
         console.log("that user already exists!");
         res.writeHead(302, {
-        Location: "http://localhost:5000/public/sign-up.html"
+        Location: "/public/sign-up.html"
       });
         res.end();
       }

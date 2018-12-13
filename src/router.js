@@ -3,7 +3,7 @@ const handler = require("./handlers/handler");
 const router = (req, res) => {
   const url = req.url;
   
-// ****************************POST METHOD********************
+// ---------------- POST METHOD -----------------
   if (req.method === 'POST') {
     if (url === "/submitPost") {
       handler.handlerSubmit(req, res);
@@ -16,7 +16,7 @@ const router = (req, res) => {
     }
   }
   
-// *******************GET METHOD***********************
+// --------------- GET METHOD -------------------
 else {
   if (url === "/") {
     handler.handlerHome(req, res);
