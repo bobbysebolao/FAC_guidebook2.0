@@ -41,6 +41,15 @@ const promiseSpecificUser = name => {
   });
 }
 
+const promiseSpecificRest = name => {
+  return new Promise((resolve, reject) => {
+    dbConnection.query(`SELECT * FROM restaurants WHERE name = '${name}'`, (err, res) => {
+      if (err) reject(err);
+      else resolve(res.rows);
+    });
+  });
+}
+
 // getSpecificUser("Ferris", (err, res)=>{
 //   if(err){
 //     console.log("error:", err);
@@ -58,5 +67,6 @@ module.exports = {
   getRestData,
   getUserData,
   getSpecificUser,
-  promiseSpecificUser
+  promiseSpecificUser,
+  promiseSpecificRest
 };

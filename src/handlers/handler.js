@@ -121,55 +121,47 @@ const handlerLogin = (req, res) => {
 
 // ----------------------POST ROUTER------------
 const handlerSubmit = (req, res) => {
-  var body = "";
+  let body = "";
   req.on("data", function(data) {
     body += data;
-    // Too much POST data, kill the connection!
-    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-    // if (body.length > 1e6)
-    //     req.connection.destroy();
   });
   req.on("end", function() {
-    let post = qs.parse(body);
-    // use post['blah'], etc.
+    const post = qs.parse(body);
     console.log(post);
 
-    // instead, below we should call one big function from our postData
-    // that submits all of the data into posts table and restaurants table
-    // (inc. recognises and submits the logged-in users ID as foreign key from users table)
-    // (users table is only updated by submits from sign up page)
 
-    postData.postDataRest(
-      post.placeName,
-      post.address,
-      post.review,
-      post.imageUrl,
-      (err, response) => {
-        
-        if (err) {
-          return console.log(err, "Error posting rest data");
-        }
+    getData.promiseSpecificRest(post.placeName)
+    .then(result => {
+      if(result.length === 0) {
+        postData.postDataRest(
+          post.placeName,
+          post.address,
+          post.review,
+          post.imageUrl,
+          (err, response) => {
+            if (err) {
+              return console.log(err, "Error posting rest data");
+            }
+            res.writeHead(302, {
+              Location: "http://localhost:5000"
+            });
+            res.end();
+          }
+        );
+      } else {
+        console.log("that restaurant already exists!");
         res.writeHead(302, {
-          Location: "http://localhost:5000"
-        });
-        res.end();
-      })
-  
-    postData.postDataUser(
-      post.userName,
-      post.password,
-      (err, response) => {
-        if (err) {
-          return console.log(err, "Error posting user data");
-        }
-        res.writeHead(302, {
-          Location: "http://localhost:5000"
-        });
+        Location: "http://localhost:5000/public/form.html"
+      });
         res.end();
       }
-    )
-    })
+      })
+      .catch((err)=> {
+        console.log("promise error", err);
+      })
+  });
 }
+
 // THIS IS THE ROUTE WHERE WE HANDLE THE VALUES FROM THE SIGN UP.
 // WE THEN WANT TO COMPARE username VARIABLE TO OUR DB: exists or not?
 const handlerSignUp = (req, res) => {

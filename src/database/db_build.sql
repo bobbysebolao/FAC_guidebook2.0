@@ -52,14 +52,28 @@ INSERT INTO restaurants (name, location, review, img_url) VALUES
 
 INSERT INTO users (name, password) VALUES
 (
-  'Whoooolia', 
+  'whoooolia', 
   'password'
 ),
 (
-  'Zurda', 
+  'zurda', 
   '1qaz2wsx'
+),
+(
+  'sandra', 
+  '1234rt'
 );
 
-
+INSERT INTO posts (user_id, text, restaurant_id) VALUES
+(
+  (SELECT id FROM users WHERE name = 'zurda'), 
+  'This restaurant was amazing!',
+  (SELECT id FROM restaurants WHERE name = 'Dotori')
+),
+(
+  (SELECT id FROM users WHERE name = 'sandra'), 
+  'This restaurant was AMAZEBALLS!',
+  (SELECT id FROM restaurants WHERE name = 'The Faltering Fullback')
+);
 
 COMMIT;
