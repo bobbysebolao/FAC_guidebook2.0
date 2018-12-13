@@ -4,6 +4,10 @@ const request = require("request");
 const getData = require("./getData");
 const postData = require("./postData");
 const qs = require("querystring");
+const bcrypt = require("bcryptjs");
+const { parse } = require('cookie');
+const { sign, verify } = require('jsonwebtoken');
+const freshFromTheOven = require("./cookie")
 
 // ----------------------HOME ROUTE ------------also displays existing recommendations from DB----
 const handlerHome = (request, response) => {
@@ -67,6 +71,46 @@ const handlerUsers = (request, response) => {
     response.end(userData);
   });
 };
+
+
+// THIS IS THE ROUTE WHERE WE HANDLE THE VALUES FROM THE LOGIN SUBMIT.
+// WE THEN WANT TO COMPARE loginDetails VARIABLE TO OUR DB
+const handlerLogin = (req, res) => {
+  let body = "";
+  req.on("data", (data) => {
+    body += data;
+  });
+  req.on("end", () => {
+    const {userName, password} = qs.parse(body);
+    console.log(userName, password);
+
+    getData.getUserData((err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        bcrypt.compare(result.password, password, (err, passwordsMatch) => {
+          if (err) {
+            res.statusCode = 500 
+            res.end("error logging in")
+            return
+          }
+            if (!passwordsMatch) {
+            res.statusCode = 403
+            res.end("Username or password doesn't exist")
+            return;
+            } else {
+              res.writeHead(302, {Location: "http://localhost:5000/public/form.html"});
+              res.end("logged in!!");
+            }
+          });
+        }
+      })
+    })
+  };
+
+// should be a function to handle the SIGNUP LOGIC
+// will update the users table
+
 // ----------------------POST ROUTER------------
 const handlerSubmit = (req, res) => {
   var body = "";
@@ -117,50 +161,6 @@ const handlerSubmit = (req, res) => {
     );
   });
 };
-
-// THIS IS THE ROUTE WHERE WE HANDLE THE VALUES FROM THE LOGIN SUBMIT.
-// WE THEN WANT TO COMPARE loginDetails VARIABLE TO OUR DB
-const handlerLogin = (req, res) => {
-  let body = "";
-  req.on("data", function(data) {
-    body += data;
-  });
-  req.on("end", function() {
-    const {userName, password} = qs.parse(body);
-    console.log(userName, password);
-
-    getData.getUserData((err, result)=>{
-      let loggedIn = false;
-      if(err){
-        console.log(err);
-      } else {
-        result.forEach((user)=>{
-          if(user.name === userName && user.password === password){
-            console.log("correct user details");
-            loggedIn = true;
-            return;
-          } else {
-            console.log("user doesn't exist!");
-          }
-        });
-        if(!loggedIn){
-          res.writeHead(302, {
-            Location: "http://localhost:5000/public/login.html"
-          });
-          res.end();
-        } else {
-          res.writeHead(302, {
-            Location: "http://localhost:5000/public/form.html"
-          });
-          res.end();
-        }
-      }
-    })
-  });
-};
-
-// should be a function to handle the SIGNUP LOGIC
-// will update the users table
 
 module.exports = {
   handlerHome,
