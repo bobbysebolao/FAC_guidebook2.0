@@ -161,6 +161,31 @@ const handlerSubmit = (req, res) => {
     );
   });
 };
+// THIS IS THE ROUTE WHERE WE HANDLE THE VALUES FROM THE SIGN UP.
+// WE THEN WANT TO COMPARE username VARIABLE TO OUR DB: exists or not? 
+const handlerSignUp = (req, res) => {
+  let body = "";
+  req.on("data", data => {
+    body += data;
+  });
+  req.on("end", () => {
+    // check if user exists in db using getData
+    const {userName, password} = qs.parse(body);
+    console.log(userName, password);
+    postData.postDataUser(userName, password, (err, result) => {
+      if (err) { 
+        console.log(err);
+      } else {
+        console.log('success', result);
+        res.writeHead(302, {
+        Location: "http://localhost:5000/public/login.html"
+      });
+      res.end();
+      } 
+  });
+  });
+}
+
 
 module.exports = {
   handlerHome,
@@ -168,5 +193,6 @@ module.exports = {
   handlerRestaurants,
   handlerSubmit,
   handlerUsers,
+  handlerSignUp,
   handlerLogin
-};
+}
