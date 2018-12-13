@@ -81,6 +81,12 @@ const handlerSubmit = (req, res) => {
     let post = qs.parse(body);
     // use post['blah'], etc.
     console.log(post);
+
+    // instead, below we should call one big function from our postData
+    // that submits all of the data into posts table and restaurants table
+    // (inc. recognises and submits the logged-in users ID as foreign key from users table)
+    // (users table is only updated by submits from sign up page)
+
     postData.postDataRest(
       post.placeName,
       post.address,
@@ -112,10 +118,55 @@ const handlerSubmit = (req, res) => {
   });
 };
 
+// THIS IS THE ROUTE WHERE WE HANDLE THE VALUES FROM THE LOGIN SUBMIT.
+// WE THEN WANT TO COMPARE loginDetails VARIABLE TO OUR DB
+const handlerLogin = (req, res) => {
+  let body = "";
+  req.on("data", function(data) {
+    body += data;
+  });
+  req.on("end", function() {
+    const {userName, password} = qs.parse(body);
+    console.log(userName, password);
+
+    getData.getUserData((err, result)=>{
+      let loggedIn = false;
+      if(err){
+        console.log(err);
+      } else {
+        result.forEach((user)=>{
+          if(user.name === userName && user.password === password){
+            console.log("correct user details");
+            loggedIn = true;
+            return;
+          } else {
+            console.log("user doesn't exist!");
+          }
+        });
+        if(!loggedIn){
+          res.writeHead(302, {
+            Location: "http://localhost:5000/public/login.html"
+          });
+          res.end();
+        } else {
+          res.writeHead(302, {
+            Location: "http://localhost:5000/public/form.html"
+          });
+          res.end();
+        }
+      }
+    })
+  });
+};
+
+// should be a function to handle the SIGNUP LOGIC
+// will update the users table
+
 module.exports = {
   handlerHome,
   handlerPublic,
   handlerRestaurants,
   handlerSubmit,
-  handlerUsers
+  handlerUsers,
+  handlerLogin
 };

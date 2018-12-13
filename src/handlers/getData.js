@@ -21,6 +21,9 @@ const getUserData = cb => {
   });
 };
 
+// should be a function here that will check a given argument (Attempted login)
+// against db. And then we will call this function in the relevant handler
+
 
 
 module.exports = {
