@@ -6,7 +6,8 @@
 ## Day 1: 
 
 - Creating a database on Heroku and linking it to the new repo (this took longer than expected, we're still not sure why!)
-- Signup form validation (unmatching passwords, patterns)
+- Signup form validation on the client side (unmatching passwords, patterns)
+- We spent a long time tracking our callback functions through different files to figure out where to put the login form validation (to compare the password in the database with the password that is submitted)
 - whiteboard coding
 
 ![img_5081](https://user-images.githubusercontent.com/36998110/49939612-3d049600-fed5-11e8-8b82-a03d61225030.JPG)
@@ -18,7 +19,7 @@
 - User journey
 ![img_5101](https://user-images.githubusercontent.com/36998110/49939616-3d9d2c80-fed5-11e8-9223-f5a9ecff7e3a.JPG)
 
-- Clinet-side validation for the sign up page
+- Client-side validation for the sign up page
 
 - Handling the USER LOGIN logic:
 -- First step:
