@@ -26,6 +26,7 @@ const getSpecificUser = (name, cb) => {
     if (err) {
       cb(err);
     } else {
+      console.log(res.rows);
       cb(null, res.rows);
     }
   });
