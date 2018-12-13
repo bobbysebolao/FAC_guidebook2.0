@@ -10,7 +10,6 @@ const getRestData = cb => {
   });
 };
 
-
 const getUserData = cb => {
   dbConnection.query(`SELECT * FROM users`, (err, res) => {
     if (err) {
@@ -49,19 +48,6 @@ const promiseSpecificRest = name => {
     });
   });
 }
-
-// getSpecificUser("Ferris", (err, res)=>{
-//   if(err){
-//     console.log("error:", err);
-//   } else {
-//     console.log("result: ", res);
-//   }
-// })
-
-// should be a function here that will check a given argument (Attempted login)
-// against db. And then we will call this function in the relevant handler
-
-
 
 module.exports = {
   getRestData,
