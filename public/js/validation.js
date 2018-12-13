@@ -1,17 +1,21 @@
 // Validation for sign-up
-const password = document.getElementById('password');
-const confirmPassword = document.getElementById('confirm-password');
-
 const submitBtn = document.getElementById('sign-up-submit');
 submitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
+
     if (password !== confirmPassword) {
+        e.preventDefault();
         console.log('Passwords do not match');
-        const error = document.createElement('p');
-        error.textContent = 'Passwords do not match';
-        document.getElementById('sign-up-form').appendChild(error);
-        //confirmPassword.setCustomValidity('Passwords do not match');
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('password').style.border = '2px red solid';
+        document.getElementById('confirm-password').style.border = '2px red solid';
     } else {
-        console.log('Lalala')
+        console.log('Passwords do match! Logged in!');
+        document.getElementById('error').style.display = 'none';
+        // document.getElementById('success').style.display = 'block';
+        document.getElementById('password').style.border = '1px solid #379683';
+        document.getElementById('confirm-password').style.border = '1px solid #379683';
     }
 });
