@@ -7,10 +7,12 @@
 
 - Creating a database on Heroku and linking it to the new repo (this took longer than expected, we're still not sure why!)
 - Signup form validation (unmatching passwords, patterns)
-- 
 
 ## Day 2: 
 - User journey
+![img_5101](https://user-images.githubusercontent.com/36998110/49939616-3d9d2c80-fed5-11e8-9223-f5a9ecff7e3a.JPG)
+
+- Clinet-side validation for the sign up page
 
 - Handling the USER LOGIN logic:
 -- First step:
@@ -56,4 +58,4 @@
 };
 
 ```
-Refactor with bcryptjs?
+- Refactor with bcryptjs?
