@@ -2,32 +2,32 @@
 
 ### User journey:
 
-- User can view existing posts
- -- Pull and display data from db
+1. User can view existing posts
+- Pull and display data from db
 
-- Click to add own post
- -- Check if user is logged in
+2. Click to add own post
+ - Check if user is logged in
 
-- If not logged in: Prompted to login or signup
- -- (If logged in, take to post form)
+3. If not logged in: Prompted to login or signup
+ - (If logged in, take to post form)
 
-- User signs up 
- -- Client side validation - check that password is at least 8 chars, with at least 1 numb, 1 uppercase and 1 lowercase
- -- Server side - Check if user name already exists in the db
- -- If no error, submit form to new row in USERS table with a HASHED password
+4. User signs up 
+ - Client side validation - check that password is at least 8 chars, with at least 1 numb, 1 uppercase and 1 lowercase
+ - Server side - Check if user name already exists in the db
+ - If no error, submit form to new row in USERS table with a HASHED password
 
-- User logs in 
- -- Server side - check that username is present in db, then check that the hash of the input matches that user's hashed password.
- -- If success, creates a JWT with info about specific user
+5. User logs in 
+ - Server side - check that username is present in db, then check that the hash of the input matches that user's hashed password.
+ - If success, creates a JWT with info about specific user
 
-- User can now access the post form (protected route)
+6. User can now access the post form (protected route)
 
-- User submits post form
- -- Client side - check that fields are not empty
- -- Server side - check if the restaurant already exists/that a post hasn't already been made referencing it
- -- If success, submit form to POSTS table and RESTAURANTS table
+7. User submits post form
+ - Client side - check that fields are not empty
+ - Server side - check if the restaurant already exists/that a post hasn't already been made referencing it
+ - If success, submit form to POSTS table and RESTAURANTS table
 
-- User can view updated home page!
+8. User can view updated home page!
 
 
 
