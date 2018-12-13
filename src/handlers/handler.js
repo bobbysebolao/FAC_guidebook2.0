@@ -7,8 +7,9 @@ const qs = require("querystring");
 const bcrypt = require("bcryptjs");
 const { parse } = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
-const freshFromTheOven = require("./cookie")
+// const freshFromTheOven = require("./cookie")
 
+const secret = "charlieIsABitch";
 // ----------------------HOME ROUTE ------------also displays existing recommendations from DB----
 const handlerHome = (request, response) => {
   const url = request.url;
@@ -101,7 +102,11 @@ const handlerLogin = (req, res) => {
             res.end("Username or password doesn't exist")
             return;
             } else {
-              res.writeHead(302, {Location: "http://localhost:5000/public/form.html"});
+              const cookie = sign(result[0].id, secret);
+              res.writeHead(302, {
+                Location: "http://localhost:5000/public/form.html",
+                'Set-Cookie': `jwt=${cookie}; HttpOnly`
+              });
               res.end("logged in!!");
             }
           });
