@@ -12,7 +12,7 @@
 ## Day 2: 
 - User journey
 
-- Handling the USER SIGN UP logic:
+- Handling the USER LOGIN logic:
 -- First step:
 
 ```
