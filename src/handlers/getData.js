@@ -21,6 +21,16 @@ const getUserData = cb => {
   });
 };
 
+const getSpecificUser = (name, cb) => {
+  dbConnection.query(`SELECT * FROM users WHERE name = '${name}'`, (err, res) => {
+    if (err) {
+      cb(err);
+    } else {
+      cb(null, res.rows);
+    }
+  });
+}
+
 // should be a function here that will check a given argument (Attempted login)
 // against db. And then we will call this function in the relevant handler
 
@@ -28,5 +38,6 @@ const getUserData = cb => {
 
 module.exports = {
   getRestData,
-  getUserData
+  getUserData,
+  getSpecificUser
 };

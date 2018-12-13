@@ -61,5 +61,6 @@ const postDataUser = (name, password, cb) => {
 
 module.exports = {
     postDataRest,
-    postDataUser
+    postDataUser,
+    hashPassword
 }

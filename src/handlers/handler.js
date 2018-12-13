@@ -84,11 +84,13 @@ const handlerLogin = (req, res) => {
     const {userName, password} = qs.parse(body);
     console.log(userName, password);
 
-    getData.getUserData((err, result) => {
+    getData.getSpecificUser(userName, (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        bcrypt.compare(result.password, password, (err, passwordsMatch) => {
+        console.log('this is what were getting', result[0].password)
+        bcrypt.compare(password, result[0].password, (err, passwordsMatch) => {
+          console.log(password)
           if (err) {
             res.statusCode = 500 
             res.end("error logging in")
