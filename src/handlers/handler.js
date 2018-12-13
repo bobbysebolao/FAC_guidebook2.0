@@ -1,15 +1,13 @@
 const fs = require("fs");
 const path = require("path");
-const request = require("request");
 const getData = require("./getData");
 const postData = require("./postData");
 const qs = require("querystring");
 const bcrypt = require("bcryptjs");
 const { parse } = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
-// const freshFromTheOven = require("./cookie")
-
 const secret = "charlieIsABitch";
+
 // ----------------------HOME ROUTE ------------also displays existing recommendations from DB----
 const handlerHome = (request, response) => {
   const url = request.url;
@@ -40,27 +38,30 @@ const handlerPublic = (request, response, url) => {
 
   const filePath = path.join(__dirname, "..", "..", url);
   fs.readFile(filePath, (error, file) => {
+    let message;
+    
     if (error) {
       console.log(`Error: ${error}`);
       response.writeHead(500, { "Content-Type": "text/html" });
       response.end("<h1>Sorry, we'v had a problem on our end</h1>");
     } else {
+      console.log(url);
       response.writeHead(200, { "Content-Type": extensionType[extension] });
       response.end(file);
-    }
-  });
-};
-
+  }
+})
+}
+ 
 const handlerRestaurants = (request, response) => {
   getData.getRestData((err, res) => {
     if (err) {
       return console.log(err, "error");
     }
-    const restaurantsData = JSON.stringify(res);
-    response.writeHead(200, { "Content-Type": "application/json" });
-    response.end(restaurantsData);
-  });
-};
+      const restaurantsData = JSON.stringify(res);
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.end(restaurantsData);
+    })
+  }
 
 const handlerUsers = (request, response) => {
   getData.getUserData((err, res) => {
@@ -95,7 +96,7 @@ const handlerLogin = (req, res) => {
           if (err) {
             res.statusCode = 500
             res.end("error logging in")
-            return
+            return;
           }
             if (!passwordsMatch) {
             res.statusCode = 403
@@ -127,6 +128,7 @@ const handlerSubmit = (req, res) => {
   req.on("end", function() {
     const post = qs.parse(body);
     console.log(post);
+
 
     getData.promiseSpecificRest(post.placeName)
     .then(result => {
@@ -201,6 +203,18 @@ const handlerSignUp = (req, res) => {
   });
 }
 
+const handlerAuthenticate = (req, res) => {
+  if(req.headers.cookie){
+    console.log("here is your cookie", req.headers.cookie);
+    res.writeHead(302, {Location: "./public/form.html"});
+    res.end();
+  } else {
+    console.log("COOKIE?", req.headers.cookie);
+    res.writeHead(302, {Location: "./public/sign-up.html"});
+    res.end();
+  }
+}
+
 
 
 module.exports = {
@@ -210,5 +224,6 @@ module.exports = {
   handlerSubmit,
   handlerUsers,
   handlerSignUp,
-  handlerLogin
+  handlerLogin,
+  handlerAuthenticate
 }
