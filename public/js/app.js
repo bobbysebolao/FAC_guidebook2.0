@@ -28,13 +28,3 @@ const displayData = display => {
 };
 
 fetchData(displayData);
-
-// window.addEventListener("load", displayRecommendations);
-/// call request functions
-
-// displ// dis
-
-// ***********ARROW BUTTON*******
-document.querySelector('.fas').addEventListener('click', function(){
-  
-})
