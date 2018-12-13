@@ -39,7 +39,7 @@ const handlerPublic = (request, response, url) => {
   const filePath = path.join(__dirname, "..", "..", url);
   fs.readFile(filePath, (error, file) => {
     let message;
-    
+
     if (error) {
       console.log(`Error: ${error}`);
       response.writeHead(500, { "Content-Type": "text/html" });
@@ -51,7 +51,7 @@ const handlerPublic = (request, response, url) => {
   }
 })
 }
- 
+
 const handlerRestaurants = (request, response) => {
   getData.getRestData((err, res) => {
     if (err) {
@@ -210,7 +210,7 @@ const handlerAuthenticate = (req, res) => {
     res.end();
   } else {
     console.log("COOKIE?", req.headers.cookie);
-    res.writeHead(302, {Location: "./public/sign-up.html"});
+    res.writeHead(302, {Location: "./public/login.html"});
     res.end();
   }
 }
