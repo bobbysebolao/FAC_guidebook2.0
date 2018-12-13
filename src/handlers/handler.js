@@ -92,7 +92,7 @@ const handlerLogin = (req, res) => {
         bcrypt.compare(password, result[0].password, (err, passwordsMatch) => {
           console.log(password)
           if (err) {
-            res.statusCode = 500 
+            res.statusCode = 500
             res.end("error logging in")
             return
           }
@@ -164,29 +164,46 @@ const handlerSubmit = (req, res) => {
   });
 };
 // THIS IS THE ROUTE WHERE WE HANDLE THE VALUES FROM THE SIGN UP.
-// WE THEN WANT TO COMPARE username VARIABLE TO OUR DB: exists or not? 
+// WE THEN WANT TO COMPARE username VARIABLE TO OUR DB: exists or not?
 const handlerSignUp = (req, res) => {
   let body = "";
   req.on("data", data => {
     body += data;
   });
   req.on("end", () => {
+
     // check if user exists in db using getData
     const {userName, password} = qs.parse(body);
     console.log(userName, password);
-    postData.postDataUser(userName, password, (err, result) => {
-      if (err) { 
-        console.log(err);
+    getData.promiseSpecificUser(userName)
+      .then((result)=> {
+        console.log("promise result:", result);
+        if(result.length === 0){
+          postData.postDataUser(userName, password, (err, result2) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('success', result2);
+              res.writeHead(302, {
+              Location: "http://localhost:5000/public/login.html"
+            });
+            res.end();
+            }
+        });
       } else {
-        console.log('success', result);
+        console.log("that user already exists!");
         res.writeHead(302, {
-        Location: "http://localhost:5000/public/login.html"
+        Location: "http://localhost:5000/public/sign-up.html"
       });
-      res.end();
-      } 
-  });
+        res.end();
+      }
+      })
+      .catch((err)=> {
+        console.log("promise error", err);
+      })
   });
 }
+
 
 
 module.exports = {

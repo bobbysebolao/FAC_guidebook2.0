@@ -31,6 +31,23 @@ const getSpecificUser = (name, cb) => {
   });
 }
 
+const promiseSpecificUser = name => {
+  return new Promise((resolve, reject) => {
+    dbConnection.query(`SELECT * FROM users WHERE name = '${name}'`, (err, res) => {
+      if (err) reject(err);
+      else resolve(res.rows);
+    });
+  });
+}
+
+// getSpecificUser("Ferris", (err, res)=>{
+//   if(err){
+//     console.log("error:", err);
+//   } else {
+//     console.log("result: ", res);
+//   }
+// })
+
 // should be a function here that will check a given argument (Attempted login)
 // against db. And then we will call this function in the relevant handler
 
@@ -39,5 +56,6 @@ const getSpecificUser = (name, cb) => {
 module.exports = {
   getRestData,
   getUserData,
-  getSpecificUser
+  getSpecificUser,
+  promiseSpecificUser
 };
