@@ -7,6 +7,12 @@
 
 - Creating a database on Heroku and linking it to the new repo (this took longer than expected, we're still not sure why!)
 - Signup form validation (unmatching passwords, patterns)
+- whiteboard coding
+
+![img_5081](https://user-images.githubusercontent.com/36998110/49939612-3d049600-fed5-11e8-8b82-a03d61225030.JPG)
+![img_5082](https://user-images.githubusercontent.com/36998110/49939613-3d9d2c80-fed5-11e8-8032-57f2ed729284.JPG)
+![img_5083](https://user-images.githubusercontent.com/36998110/49939614-3d9d2c80-fed5-11e8-9ea3-fb57c15ea165.JPG)
+![img_5084](https://user-images.githubusercontent.com/36998110/49939615-3d9d2c80-fed5-11e8-9cf4-f06fd4e4d0a7.JPG)
 
 ## Day 2: 
 - User journey
