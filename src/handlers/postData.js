@@ -1,4 +1,5 @@
 const databaseConnection = require('../database/db_connection');
+// const bcrypt = require("bcryptjs");
 
 const postDataRest = (name, location, review, img_url, cb) => {
     databaseConnection.query(
@@ -27,6 +28,10 @@ const postDataUser = (name, password, cb) => {
         }
     );
 };
+
+// const postLogin = () => {
+//
+// }
 
 
 

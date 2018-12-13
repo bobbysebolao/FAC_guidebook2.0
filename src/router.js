@@ -2,11 +2,12 @@ const handler = require("./handlers/handler");
 
 const router = (req, res) => {
   const url = req.url;
-  
+
 // ****************************POST METHOD********************
-  if (req.method == 'POST') {
+  if (req.method == 'POST' && url == "/") {
     handler.handlerSubmit(req, res);
-} 
+} else if (req.method == 'POST' && url == '/form.html')
+    handler.handlerLogin(req, res);
 // *******************GET METHOD***********************
 else {
   if (url === "/") {
