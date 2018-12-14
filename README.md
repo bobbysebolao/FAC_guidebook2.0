@@ -1,5 +1,4 @@
 # FAC_guidebook 2.0 :fork_and_knife:
-[![Build Status](https://travis-ci.org/fac-15/FAC_guidebook2.0.svg?branch=master)](https://travis-ci.org/fac-15/FAC_guidebook2.0)
 
 This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokuapp.com/)
 
@@ -152,7 +151,8 @@ This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokua
 
 ## Day :three: : 
 ### Based on rasied issues, we ..
-- Add logout button & home button
-- Add the required rules for the password validation
-- Handle the length of the resturant review
+ - Add logout button & home button
+ - Add the required rules for the password validation
+ - Handle the length of the resturant review
+ - Travis CI - All passing! :green_heart:
 
