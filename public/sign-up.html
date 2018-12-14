@@ -20,7 +20,7 @@
             <h2>Sign up</h2>
 
             <li><label for ="name-of-user">Name</label><input pattern="^[^<>]+$" title='Text only' name='userName' type='text' id="name-of-user" class ="field-long" placeholder="Type your name here" required/> </li>
-            <li><label for ="password">Password</label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[<>]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name='password' id ="password" class ="field-long" placeholder="Enter your password here" required/> </li>
+            <li><label for ="password">Password<p id="pw-instructions">Must contain at least one number, one uppercase letter, and minimum of 8 characters</p></label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[<>]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name='password' id ="password" class ="field-long" placeholder="Enter your password here" required/> </li>
             <li><label for ="confirm-password">Confirm password</label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*[<>]).{8,}" title='Please do not match' name='confirm-password' id ="confirm-password" class ="field-long" placeholder="Please enter your password again" required/> </li>
             <p id='error'>Passwords do not match</p>
             <p id='success'>Log in successful! Bon Appétit!</p>
