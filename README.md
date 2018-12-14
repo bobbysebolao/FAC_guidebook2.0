@@ -1,4 +1,5 @@
 # FAC_guidebook 2.0 :fork_and_knife:
+[![Build Status](https://travis-ci.org/fac-15/FAC_guidebook2.0.svg?branch=master)](https://travis-ci.org/fac-15/FAC_guidebook2.0)
 
 This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokuapp.com/)
 
