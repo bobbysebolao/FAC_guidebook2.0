@@ -9,7 +9,8 @@ const router = (req, res) => {
       handler.handlerSubmit(req, res);
     } else if(url === "/userLogin"){
       handler.handlerLogin(req, res);
-    }else if (url === '/form.html') {
+    }
+      else if (url === '/form.html') {
       res.end("you're trying to access the post form");
     } else if (url === '/userSignUp') {
       handler.handlerSignUp(req, res);
@@ -29,6 +30,8 @@ else {
   }else if (url.indexOf("public") !== -1) {
     console.log("going to handlerPUblic!!");
     handler.handlerPublic(req, res, url);
+  }  else if(url === '/userLogout'){
+    handler.handlerLogout(req, res);
   } else {
     res.writeHead(404, { "Content-Type": "text/html" });
     res.end("404 not found!");
