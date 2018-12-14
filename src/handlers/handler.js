@@ -6,7 +6,7 @@ const qs = require("querystring");
 const bcrypt = require("bcryptjs");
 const { parse } = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
-const secret = "charlieIsABitch";
+const secret = process.env.SECRET;
 
 // ----------------------HOME ROUTE ------------also displays existing recommendations from DB----
 const handlerHome = (request, response) => {
