@@ -1,6 +1,6 @@
-let xhr = new XMLHttpRequest();
+const xhr = new XMLHttpRequest();
 
-function fetchData(callback) {
+const fetchData = callback => {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       let display = JSON.parse(xhr.responseText);

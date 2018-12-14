@@ -41,7 +41,7 @@ INSERT INTO restaurants (name, location, review, img_url) VALUES
   'The Faltering Fullback', 
   '19 Perth Rd, Stroud Green, London N4 3HB', 
   'The pub is really cosy! The backyard is really cool. They also sell food (which was actually not that great...)',
-  'http://falteringfullback.com/sites/default/files/slides/BACK-BAR-AT-NIGHT.jpg'
+  'https://falteringfullback.com/sites/default/files/slides/BACK-BAR-AT-NIGHT.jpg'
 ),
 (
   'Dotori', 
