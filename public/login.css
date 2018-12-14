@@ -12,6 +12,15 @@ h1 {
 	background-color: #F5B871;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
 #myButton{
 	margin: 0 auto;
 	display: block;
@@ -37,8 +46,8 @@ h2 {
   font-family: 'Bungee', cursive;
   color: #F5B871;
   font-size: 2em;
-
 }
+
 
 .form-style-1 {
     margin: 0 auto;

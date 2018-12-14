@@ -135,8 +135,8 @@ const handlerLogin = (req, res) => {
 const handlerLogout = (req, res) => {
   if(req.headers.cookie){
     res.writeHead(302, {
-      Location: "./public/index.html",
-      'Set-cookie': 'jwt=0'});
+      Location: "/",
+      'Set-cookie': 'jwt=0; max-age=0;'});
       res.end();
   } else {
     res.writeHead(302, {
