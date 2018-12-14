@@ -17,7 +17,7 @@ This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokua
 6. Go to `localhost:5000` for the home page
 7. Start contributing to FAC-guidebook! :two_hearts:
 
-  - For testing: run `npm test` (server side testing need additional credentials)
+  - For testing: run `npm test` (Database testing need additional credentials)
 
 ### User journey:
 
@@ -145,3 +145,5 @@ This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokua
   - Server side - check that username is present in db, then check that the hash of the input matches that user's hashed password!
 
   - Post form validation (everything we had in there last week...)
+  
+## Test for server side and database SEPERATELY! 
