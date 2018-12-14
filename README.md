@@ -147,3 +147,10 @@ This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokua
   - Post form validation (everything we had in there last week...)
   
 ## Test for server side and database SEPERATELY! 
+
+
+## Day :three: : 
+- Add logout button & home button
+- Add the required rules for the password validation
+- Handle the length of the resturant review
+
