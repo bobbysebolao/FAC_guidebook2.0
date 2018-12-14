@@ -4,6 +4,18 @@
   font-size: 1rem;
 }
 
+a { 
+  color: inherit; 
+  font-size: inherit;
+  text-decoration: inherit;
+} 
+
+#pw-instructions {
+  font-size: 0.7em;
+  padding: 0.5em 0.5em 0.5em 0;
+  text-align: left;
+  color: grey;
+}
 h1 {
 	text-align: center;
 	padding: 2em;
@@ -13,7 +25,7 @@ h1 {
 }
 
 h2 {
-  padding: 0,6em;
+  padding: 0.6em;
   margin-top: 1em;
   margin-bottom: 1em;
   font-family: 'Bungee', cursive;
@@ -39,6 +51,7 @@ a:hover{
   
   .form-style-1 li {
     padding: 0;
+    padding-top: 0.4
     display: block;
     list-style: none;
     margin: 10px 0 0 0;
