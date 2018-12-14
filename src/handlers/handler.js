@@ -12,18 +12,32 @@ const secret = process.env.SECRET;
 const handlerHome = (request, response) => {
   const url = request.url;
   console.log(`requesting the home route, url: ${url}`);
-
-  const filePath = path.join(__dirname, "..", "..", "public", "index.html");
-  fs.readFile(filePath, (error, file) => {
-    if (error) {
-      console.log(`Error: ${error}`);
-      response.writeHead(500, { "Content-Type": "text/html" });
-      response.end("<h1>Sorry, we've had a problem on our end</h1>");
-    } else {
-      response.writeHead(200, { "Content-Type": "text/html" });
-      response.end(file);
-    }
-  });
+  if(request.headers.cookie){
+    const filePath = path.join(__dirname, "..", "..", "public", "index2.html");
+    fs.readFile(filePath, (error, file) => {
+      if (error) {
+        console.log(`Error: ${error}`);
+        response.writeHead(500, { "Content-Type": "text/html" });
+        response.end("<h1>Sorry, we've had a problem on our end</h1>");
+      } else {
+        response.writeHead(200, { "Content-Type": "text/html" });
+        response.end(file);
+      }
+    });
+  } else {
+    const filePath = path.join(__dirname, "..", "..", "public", "index.html");
+    fs.readFile(filePath, (error, file) => {
+      if (error) {
+        console.log(`Error: ${error}`);
+        response.writeHead(500, { "Content-Type": "text/html" });
+        response.end("<h1>Sorry, we've had a problem on our end</h1>");
+      } else {
+        response.writeHead(200, { "Content-Type": "text/html" });
+        response.end(file);
+      }
+    });
+  }
+  
 };
 
 // ----------------------PUBLIC ROUTE ------------
@@ -115,6 +129,21 @@ const handlerLogin = (req, res) => {
       })
     })
   };
+
+
+// Logout Handler
+const handlerLogout = (req, res) => {
+  if(req.headers.cookie){
+    res.writeHead(302, {
+      Location: "./public/index.html",
+      'Set-cookie': 'jwt=0'});
+      res.end();
+  } else {
+    res.writeHead(302, {
+      Location: "./public/login.html"});
+      res.end();
+  }
+}
 
 // should be a function to handle the SIGNUP LOGIC
 // will update the users table
@@ -225,5 +254,6 @@ module.exports = {
   handlerUsers,
   handlerSignUp,
   handlerLogin,
-  handlerAuthenticate
+  handlerAuthenticate,
+  handlerLogout
 }
