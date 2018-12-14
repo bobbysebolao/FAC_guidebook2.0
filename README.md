@@ -145,3 +145,5 @@ This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokua
   - Server side - check that username is present in db, then check that the hash of the input matches that user's hashed password!
 
   - Post form validation (everything we had in there last week...)
+  
+## Test for server side and database SEPERATELY! 
