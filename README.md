@@ -150,6 +150,7 @@ This project is live on heroku: [FAC Guidebook](https://fac-guidebook-20.herokua
 
 
 ## Day :three: : 
+### Based on rasied issues, we ..
 - Add logout button & home button
 - Add the required rules for the password validation
 - Handle the length of the resturant review
